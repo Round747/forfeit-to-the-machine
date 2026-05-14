@@ -1,0 +1,101 @@
+#f_canvas-parent {
+    display: flex;
+    justify-self: center;
+    align-items: center;
+    height: 90vh;
+}
+
+.f_download-button {
+    border: 2px solid black;
+    padding: 1rem;
+    margin: 2rem;
+    margin-top: 3rem;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.f_download-button p {
+    display: inline-block;
+    margin-right: 1rem;
+}
+
+#f_download-buttons {
+    display: flex;
+    justify-content: space-around;
+}
+
+#f_submit-popup {
+    width: 42rem;
+}
+
+#f_submit-button {    
+    display: flex;
+    float: right;
+
+    align-items: center;
+    border: 2px solid black;
+    padding: 0.25rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    cursor: pointer;
+}
+
+#f_submit-button p {
+    display: inline-block;
+    margin-right: 1rem;
+}
+
+#f_submit-artwork-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-family: pixel;
+}
+
+#f_submit-artwork-form input[type="text"]
+{
+    margin-bottom: 1rem;
+}
+
+#f_popup-canvas {
+    border: solid 2px black;
+    display: block;
+    margin: auto;
+    margin-bottom: 2rem;
+    margin-top: 1.5rem;
+}
+
+#f_popup-header h1{
+    font-size: 1.5rem;
+}
+
+#f_popup-header p{
+    font-size: 0.75rem;
+}
+
+#f_submit-fields {
+    display: flex;
+    justify-content: space-between;
+    /* flex-direction: column; */
+}
+
+#f_submit-fields-input {
+    /* width: 70%; */
+}
+
+#f_submit-button-holder {
+    display: flex; 
+    align-items: end; 
+    /* width: 30%;  */
+    justify-content: end;
+}
+
+#f_submit-fields .info {
+    display: inline-block;
+    margin-top: 0;
+    font-size: 0.75rem;
+}
+
+#f_submit-fields input[type="text"] {
+    display: inline-block;
+}

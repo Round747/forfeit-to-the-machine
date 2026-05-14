@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forfeit to the Machine</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/title.css">
+    <link rel="stylesheet" href="assets/css/gallery.css">
+    <link rel="stylesheet" href="assets/css/canvas.css">
+    <link rel="stylesheet" href="assets/css/freeDraw.css">
+    <link rel="stylesheet" href="assets/css/game.css">
+</head>
+<body id="body">
+    <section id="persistant">
+        <div id="p_header">
+            <img src="assets/images/back.png" class="image-button" id="p_menu" style="height: 3rem; width: 3rem;" alt="">
+            <img src="assets/images/sound.png" class="image-button" id="p_mute-button">
+        </div>
+    </section>
+
+    <section id="title-screen" hidden>
+        <div id="t_flex">
+            <img src="assets/images/ai/apples.png" alt="">
+            <div id="t_wrapper">
+                <!-- <h1 id="t_title">Forfeit to the machine</h1> -->
+                <img src="assets/images/title.png" style="width: auto; height: 200px; margin: 0; margin-top: 2rem;">
+                <div id="t_menu-buttons">
+                    <button>PLAY GAME</button>
+                    <button>VIEW GALLERY</button>
+                    <button>FREE DRAW</button>
+                </div>
+                <p id="t_copyright"><img src="assets/images/copyright.png" style="display: inline-block; width: 1rem; height: 1rem;"> 2026 Liam Latz</p>
+            </div>
+            <img src="assets/images/apple.png" alt="">
+        </div>
+
+    </section>
+
+    <section id="game-screen" hidden>
+        <div id="g_game">
+            <div id="g_header" >
+               <div id="g_header-info" style="display: flex;">
+                    <div>
+                        <!-- <p style="display: inline-block;">prompt:</p> -->
+                        <p id="g_prompt">
+                              SOMETHING HOT
+                        </p>
+                    </div>
+                    <div>
+                        <p id="g_timer">60s</p>
+                    </div>
+               </div>
+               <button id="g_result-button" hidden>GET RESULTS</button>
+            </div>
+            <div class="dynamic-popup" id="g_prompt-popup">
+                <h1 id="g_round-number">your prompt is</h1>
+                <p id="g_prompt-reveal">SOMETHING HOT</p>
+            </div>
+            <div id="g_forfeit-overlay"></div>
+            <div class="dynamic-popup" id="g_forfeit-popup">
+                <h1>YOU LOSE</h1>
+                <p id="g_lose-text">Let's face it, you're not cut out for this.</p>
+                <hr>
+                <div id="g_continue-buttons">
+                    <button>GIVE UP</button>
+                    <button>KEEP GOING</button>
+                </div>
+            </div>
+            <div id="g_wrapper">
+            
+                <div style="position: relative;">
+                    <img src="assets/images/ai/transparent.png" alt="" id="g_machine-canvas-overlay">
+                    <div id="g_machine-text">
+                        <p></p>
+                        <p></p>
+                    </div>
+                    <img src="assets/images/ai/empty.png" alt="" width="600" height="600" id="g_machine-canvas">
+                </div>
+            
+                <div style="height: 604px; display: flex; align-items: center;" ><h1 style="text-align: center; justify-content: center; font-size: 2.5rem; font-family: pixel-italics;">VS</h1></div>
+                <div id="g_canvas-parent">
+                </div>
+            </div>
+        </div>
+        <div id="g_comic" style="display: none;">
+            <div>
+                <img id="g_comic-left" class="image-button" style="width: 3rem; height: 3rem;" src="assets/images/back.png"></img>
+                <img src="assets/images/comic/1.png" alt="" id="g_comic-image" width="1200" height="600">
+                <img id="g_comic-right" class="image-button" style="width: 3rem; height: 3rem;" src="assets/images/forward.png"></img>
+
+            </div>
+
+        </div>
+
+        <div id="g_ending" hidden>
+            <p>testing</p>
+        </div>
+        
+    </section>
+
+    <section id="gallery-screen" hidden>
+
+        <div id="gl_disclaimer-popup" class="popup">
+            <div class="popup-header">
+                <h1>NOTICE</h1>
+                <img src="assets/images/x.png" alt="close" class="image-button" id="gl_disclaimer-close">
+            </div>
+            <hr>
+            <p>The only moderation for images in this gallery is an "approved" stamp. Unapproved images are not shown by default.
+                <br><br> </p>
+                <div class="popup-header">
+                    <img src="assets/images/eye-closed.png" alt="" class="image-button" style="margin-right: 1rem; cursor: auto;">
+                    <p style="margin-top: 0;">To view unapproved images, click the eye button in the bottom right corner of the page.</p> 
+                </div>
+        </div>
+
+        <div id="gl_popup-box" class="popup" hidden>
+            <div id="gl_popup-header">
+                <h1 id="gl_popup-title">Test</h1>
+                <img src="assets/images/x.png" alt="close" class="image-button" id="gl_close-popup">
+            </div>
+            <hr id="gl_popup-hr">
+
+            <canvas id="gl_popup-canvas" width="600" height="600"></canvas>
+
+            <div id="gl_popup-fields">
+
+            </div>
+        </div>
+
+        <div id="gl_header">
+            <div id="gl_nav-bar">
+                <h1>GALLERY</h1>
+                <p id="gl_round-name">FREE DRAW</p>
+                <div id="gl_prompt-buttons">
+                    <p class="inline">Round:</p>
+                    <button>1</button>
+                    <button>2</button>
+                    <button>3</button>
+                    <button>4</button>
+                    <div class="vr"></div>
+                    <button class="highlighted">ALL</button>
+                </div>
+            </div>
+            <hr style="margin-top: 0;">
+        </div>
+
+        <div id="gl_list">
+        </div>
+        <p id="gl_total-images">Showing artworks x-y / z</p>
+        <div id="gl_footer">
+            <p id="gl_contributions"></p>
+            <div id="gl_page-buttons">
+                <img src="assets/images/g_left.png" alt="" style="display: inline-block; height: 2.25rem; width: 2.25rem; image-rendering: pixelated; cursor: pointer; float: none; vertical-align: bottom;">
+                <input type="number" min="1" value="1">
+                <img src="assets/images/g_right.png" alt="" style="display: inline-block; height: 2.25rem; width: 2.25rem; image-rendering: pixelated; cursor: pointer; float: none; vertical-align: bottom;">
+            </div>
+            <div id="gl_show-unapproved-holder">
+                <img src="assets/images/eye-closed.png" alt="show unapproved" class="image-button" id="gl_show-unapproved">
+            </div>
+        </div>
+    </section>
+
+    <section id="free-draw-screen" hidden>
+        <span id="f_canvas-parent">
+
+            <div id="main-canvas-parent">
+                <div id="main-canvas-holder">
+                    <canvas id="c_main-canvas" width="600" height="600"></canvas>
+                    <div id="c_sidebar">
+                        <div id="c_file-menu">
+                            <img src="assets/images/download.png" alt="download image" id="c_download" class="image-button">
+                            <label for="c_upload-file" >
+                                <img src="assets/images/upload.png" alt="upload image" class="image-button" id="c_upload">
+                            </label>
+                            <input type="file" id="c_upload-file" accept=".fmp">
+                            <img src="assets/images/submit.png" alt="download image" id="c_submit" class="image-button">
+                        </div>
+                        <p id="c_tooltip"></p>
+                        <div id="c_colour-menu">
+                            <button id="red-colour" class="colour-button" value="red"></button>
+                            <button id="blue-colour" class="colour-button" value="blue"></button>
+                            <button id="yellow-colour" class="colour-button" value="yellow"></button>
+                            <button id="green-colour" class="colour-button" value="#00ff00"></button>
+                            <button id="magenta-colour" class="colour-button" value="magenta"></button>
+                            <button id="cyan-colour" class="colour-button" value="cyan"></button>
+                            <button id="black-colour" class="colour-button" value="black"></button>
+                            <button id="white-colour" class="colour-button" value="white"></button>
+                        </div>
+                    </div>
+                
+                </div>
+                <div id="c_toolbar">
+                    <div id="c_brush-toolbar">
+                        <!-- <img src="assets/images/small.png" id="c_brush-preview"> -->
+                        <div id="c_brush-preview-wrapper">
+                            <div id="c_brush-preview"></div>
+                        </div>
+                        <input type="number" id="c_brush-size" value="1" min="1">
+                        <div id="c_arrows-holder">
+                            <img src="assets/images/arrowTop.png" id="c_up-arrow">
+                            <img src="assets/images/arrowBottom.png" id="c_down-arrow">
+                        </div>
+                        <div id="c_brush-menu">
+                            <img src="assets/images/pencil.png" alt="brush" id="c_brush" class="large-image-button highlighted">
+                            <img src="assets/images/fill.png" alt="fill" id="c_fill" class="large-image-button">
+                            <img src="assets/images/line.png" alt="line" id="c_line" class="large-image-button">
+                        </div>
+                    </div>
+                    <img src="assets/images/reset.png" alt="reset" id="c_clear-canvas" class="large-image-button">
+
+                </div>
+            </div>
+        </span>
+
+        <div id="f_export-popup" class="popup" hidden>
+            <div class="popup-header">
+                <h1>save artwork</h1>
+                <img src="assets/images/x.png" alt="close" class="image-button" id="f_download-close">
+            </div>
+            <div id="f_download-buttons">
+                <div class="f_download-button" id="f_image-button">
+                    <p>Image</p>
+                    <img src="assets/images/image.png" alt="close" class="image-button" >
+                </div>
+                <div class="f_download-button" id="f_file-button">
+                    <p>Project file</p>
+                    <img src="assets/images/file.png" alt="close" class="image-button" >
+                </div>
+            </div>
+            <hr>
+            <p>* Only project files can be imported back into the editor.</p>
+        </div>
+
+        <div id="f_submit-popup" class="popup" hidden>
+            <div class="popup-header">
+                <div id="f_popup-header">
+                    <h1>submit artwork to gallery</h1>
+                    <p>Submitting an artwork will make it available for all users to see in the gallery page. It cannot be edited once uploaded.</p>
+                </div>
+                <img src="assets/images/x.png" alt="close" class="image-button" id="f_submit-close">
+            </div>
+
+            <canvas id="f_popup-canvas" height="300px" width="300px"></canvas>
+
+            <hr>
+
+            <form name="submit-artwork-form" id="f_submit-artwork-form">
+                <p class="subtitle">Please note all fields are optional</p>
+
+                <div id="f_submit-fields">
+                    <div id="f_submit-fields-inputs">
+                        <label for="f_title-input">TITLE</label>
+                        <input type="text" id="f_title-input" placeholder="Name of your work" name="userTitle" maxlength="30">
+                        <p class="info" id="f_title-info"> 0/30</p>
+
+                        <label for="f_name-input">BY</label>
+                        <input type="text" id="f_name-input" placeholder="Your name" name="userName" maxlength="30">
+                        <p class="info" id="f_name-info">0/30</p>
+
+                        <label for="f_name-input">FROM</label>
+                        <input type="text" id="f_location-input" placeholder="Your Country / city" name="userLocation" maxlength="30">
+                        <p class="info" id="f_location-info">0/30</p>
+                    </div>
+                
+                    <div id="f_submit-button-holder">
+                        <div id="f_submit-button">
+                            <p>SUBMIT</p>
+                            <img src="assets/images/submit.png" alt="submit" class="image-button">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </section>
+
+    <link rel="preload" href="assets/images/comic/2.png" as="image">
+    <link rel="preload" href="assets/images/comic/3.png" as="image">
+    <link rel="preload" href="assets/images/comic/4.png" as="image">
+    <link rel="preload" href="assets/images/comic/5.png" as="image">
+    <link rel="preload" href="assets/images/ai/reveal.gif" as="image">
+    <link rel="preload" href="assets/images/ai/apples.png" as="image">
+    <link rel="preload" href="assets/images/ai/favourite food.png" as="image">
+    <link rel="preload" href="assets/images/ai/self portrait.png" as="image">
+    <link rel="preload" href="assets/images/ai/something hot.png" as="image">
+    <link rel="preload" href="assets/images/mute.png" as="image">
+
+    <script src="bundle.js"></script>
+</body>
+</html>

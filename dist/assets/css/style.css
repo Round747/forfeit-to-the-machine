@@ -1,0 +1,155 @@
+/* default styles */
+
+@font-face {
+    font-family: pixel;
+    src: url("../fonts/8x8\ font\ Serif.ttf");
+}
+
+@font-face {
+    font-family: pixel-italics;
+    src: url("../fonts/8x8\ font\ Serif\ Italics.ttf");
+}
+
+html {
+    box-sizing: border-box;
+    user-select: none;
+    background-color: white;
+}
+
+body {
+    /* padding: 1rem; */
+    margin: 0;
+}
+
+.vr {
+    display: inline-block;
+    width: 1rem;
+    height: calc(2.5rem + 4px);
+    margin-right: 1rem;
+    border-right: solid 2px black;
+    vertical-align: top;
+}
+
+.inline {
+    display: inline-block;
+}
+
+button {
+    border: solid 2px black;
+    font-family: pixel;
+    font-weight: normal;
+    font-size: 1.5rem;
+    padding: 0.5rem;
+    cursor: pointer;
+    background-color: white;
+}
+
+p, h1 {
+    font-family: pixel;
+}
+
+h1 {
+    font-weight: normal;
+    text-transform: uppercase;
+}
+
+hr{
+    border: 1px solid black;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    display: none;
+}
+
+input{
+    border: 2px solid black;
+    font-family: pixel;
+    outline: none;
+    font-size: 1rem;
+    padding: 0.25rem;
+    background-color: white;
+}
+
+.image-button {
+    height: 2rem;
+    width: 2rem;
+    image-rendering: pixelated;
+    cursor: pointer;
+}
+
+.popup {
+    position: fixed;
+    width: 41rem;
+    height: fit-content;
+    background-color: white;
+    border: 2px solid black;
+    
+    z-index: 10;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    right: 0;
+    margin: auto;
+    padding: 1rem;
+}
+
+.popup-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.popup-header h1 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+}
+
+canvas {
+    image-rendering: pixelated;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.highlighted {
+    border: 2px solid magenta;
+    margin: 0px !important;
+}
+
+.large-image-button {
+    image-rendering: pixelated;
+    height: 3rem;
+    width: 3rem;
+    margin: 2px;
+    cursor: pointer;
+    vertical-align: middle;
+}
+
+.subtitle {
+    font-size: 0.75rem;
+    color: magenta;
+}
+
+/* ----------- persistant ------------- */
+
+#p_header {
+    margin: 1rem;
+    width: 100%;
+    box-sizing: border-box;
+    position: fixed;
+    padding-right: 2rem;
+}
+
+#free-draw-screen, #gallery-screen {
+    
+    width: 70%;
+    margin: auto;
+
+}
+
+#p_mute-button {
+    float: right;
+}
