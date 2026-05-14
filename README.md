@@ -1,7 +1,7 @@
 # forfeit-to-the-machine
-Source code for the web game "Forfeit to the Machine."
+Source code for the web game [Forfeit to the Machine.](https://round747.itch.io/forfeit-to-the-machine)
 
-Forfeit to the Machine was created for the Gamedev.js 2026 game jam.   
+Forfeit to the Machine was created for the [Gamedev.js 2026 game jam](https://itch.io/jam/gamedevjs-2026/rate/4036473).   
 **It scored 1st place in the Innovation category, and 3rd place in the Theme category.**
 
 It is a pure html, css and javascript web game, featuring a paint program, and an art gallery database containing all artworks created by players.
