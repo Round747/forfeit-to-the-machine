@@ -138,15 +138,26 @@ function LoadNextPage()
     }
     else
     {
-        const qry = query(colRef, where("approved", "==", true), orderBy("timestamp", "desc"));
-        const qry2 = query(qry, where("prompt", "==", selectedPrompt));
+        const qry = (lastDocument != null) 
+        ? query(colRef, where("prompt", "==", selectedPrompt), where("approved", "==", true), orderBy("timestamp", "desc"), startAfter(lastDocument)) 
+        : query(colRef, where("prompt", "==", selectedPrompt), where("approved", "==", true), orderBy("timestamp", "desc"));
 
-        const pageQry = query(qry2, limit(imagesPerPage));
+        const pageQry = query(qry, limit(imagesPerPage));
+
+
+        // const qry = query(colRef, where("approved", "==", true), orderBy("timestamp", "desc"));
+        // const qry2 = query(qry, where("prompt", "==", selectedPrompt));
+
+        // const pageQry = query(qry2, limit(imagesPerPage));
 
         getDocs(pageQry).then((snapshot) => {
+
+            if(snapshot.docs.length == 0) return;
+            lastDocument = snapshot.docs[snapshot.docs.length - 1].data().timestamp;
+            firstDocument = snapshot.docs[0];
             
-            CheckForLastPage(snapshot, qry2);
-            ShowPageImageCount(qry2);
+            CheckForLastPage(snapshot, qry);
+            ShowPageImageCount(query(colRef, where("prompt", "==", selectedPrompt), where("approved", "==", true), orderBy("timestamp", "desc")));
             
             snapshot.docs.forEach((doc) => {
                 CreateGalleryElement(doc);
@@ -194,7 +205,7 @@ function GetFirstPage()
         const qry = query(colRef, where("approved", "==", true), orderBy("timestamp", "desc"), where("prompt", "==", selectedPrompt));
         const pageQry = query(qry, limit(imagesPerPage));
 
-        getDocs(qry).then((snapshot) => {
+        getDocs(pageQry).then((snapshot) => {
 
             if(snapshot.docs.length == 0) return;
             lastDocument = snapshot.docs[snapshot.docs.length - 1].data().timestamp;
@@ -220,21 +231,42 @@ function LoadPreviousPage()
 
     totalImages.textContent = "";
 
-    const qry = query(colRef, where("prompt", "==", selectedPrompt), orderBy("timestamp", "desc"), endBefore(firstDocument), limitToLast(imagesPerPage));
+    if (canViewUnapproved == true)
+    {
+        const qry = query(colRef, where("prompt", "==", selectedPrompt), orderBy("timestamp", "desc"), endBefore(firstDocument), limitToLast(imagesPerPage));
 
-    getDocs(qry).then((snapshot) => {
+        getDocs(qry).then((snapshot) => {
 
-        if(snapshot.docs.length == 0) return;
-        lastDocument = snapshot.docs[snapshot.docs.length - 1].data().timestamp;
-        firstDocument = snapshot.docs[0];
-        // console.log(lastDocument.id);
+            if(snapshot.docs.length == 0) return;
+            lastDocument = snapshot.docs[snapshot.docs.length - 1].data().timestamp;
+            firstDocument = snapshot.docs[0];
+            // console.log(lastDocument.id);
 
-        ShowPageImageCount(query(colRef, where("prompt", "==", selectedPrompt), orderBy("timestamp", "desc")));
-        
-        snapshot.docs.forEach((doc) => {
-            CreateGalleryElement(doc);
+            ShowPageImageCount(query(colRef, where("prompt", "==", selectedPrompt), orderBy("timestamp", "desc")));
+            
+            snapshot.docs.forEach((doc) => {
+                CreateGalleryElement(doc);
+            });
         });
-    });
+    }
+    else
+    {
+        const qry = query(colRef, where("prompt", "==", selectedPrompt), where("approved", "==", true), orderBy("timestamp", "desc"), endBefore(firstDocument), limitToLast(imagesPerPage));
+
+        getDocs(qry).then((snapshot) => {
+
+            if(snapshot.docs.length == 0) return;
+            lastDocument = snapshot.docs[snapshot.docs.length - 1].data().timestamp;
+            firstDocument = snapshot.docs[0];
+            // console.log(lastDocument.id);
+
+            ShowPageImageCount(query(colRef, where("prompt", "==", selectedPrompt), where("approved", "==", true), orderBy("timestamp", "desc")));
+            
+            snapshot.docs.forEach((doc) => {
+                CreateGalleryElement(doc);
+            });
+        });
+    }
 
     galleryList.innerHTML = ""; // clear existing gallery
     canLoadNextPage = true; 
